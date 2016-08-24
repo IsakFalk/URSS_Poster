@@ -84,7 +84,9 @@
 }
 %%% Title %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {\sf\bf
-	A method for the estimation of distal dendro-dendritic gap-junctional parameters
+	\begin{huge}
+		A method for the estimation of distal dendro-dendritic gap-junctional parameters
+	\end{huge}
 }
 %%% Authors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {
@@ -99,8 +101,9 @@
 \setlength\fboxsep{0pt}
 \setlength\fboxrule{0.5pt}
 	\fbox{
-		\begin{minipage}{12em}
-			\includegraphics[width=12em,height=10em]{warwick_complexity_science.jpg}
+		\begin{minipage}{22em}
+			\includegraphics[width=11em,height=9.5em]{warwick_complexity_science.jpg}
+			\includegraphics[width=11em,height=6.5em]{urss_logo.png}
 		\end{minipage}
 	}
 }
@@ -115,7 +118,12 @@ Neurons are specialised cells which form the fundamental computing unit of the b
 
 Through voltage, the neurons may communicate to each other and this is what gives rise to the cognitive processes in any animal. When enough voltage enter a neuron, it spikes and send signals at a constant rate to all neurons connected to it, a so called action potential.
 
-Despite neuroscience being over a hundred years old, how the brain operates is still a mystery, we can explain small isolated parts of the brain but not higher level cognition such as how the propagation of voltage signals give rise to consciousness.
+\begin{center}
+	\includegraphics[width=0.49\linewidth]{neural_spike.jpeg}
+	\captionof{figure}[centering]{Recording of membrane potential of a neuron}
+\end{center}
+
+On the level of a small scale network, or a single neuron, knowing the input/output relation when the cell membrane is subjected to an electrical current or spike lets us know a lot about the dynamics. The research of this poster investigates this question. 
 }
 
 \headerbox{Basic Concepts}{name=definitions,column=0,below=problem}{
@@ -154,13 +162,34 @@ as the \textbf{cumulative network}.
 This research was partially supported by the Hungarian Government (KMOP-1.1.2-08/1-2008-0002 ) and the European Union's Seventh Framework Programme: DynaNets, FET-Open project no. FET-233847 (\url{http://www.dynanets.org}). The supports are gratefully acknowledged.
 } 
 
-\headerbox{Dynamic Networks are Sensitive to Aggregation}{name=density,span=2,column=1,row=0}{
-Network characteristics are extremely sensitive to minor changes in aggregation length. In our previous work \cite{prevWork1} \cite{prevWork2}, we studied the cumulative properties of Elementary Dynamic Network models over the complete time period (i.e., until they reach the stable point of a full network). Here we focus on the more realistc domain of sparse (cumulative) networks. We find that even when snapshot networks are stationary, \textbf{important network characteristics}  (average path lenght, clustering, betwenness centrality) \textbf{are extremely sensitive to aggregation} (window length). 
+%\cite{} sites work
+\headerbox{Method}{name=density,span=2,column=1,row=0}{
+During my research I used a model which takes into consideration the resonant properties of the cell membrane caused by voltage-gated channels. The model is derived by considering the famous cable equation $\lambda^2 \frac{\partial^2 V}{\partial x^2} = \tau \frac{\partial V}{\partial t} + V$. Linearising non-linear dynamics due to the $h$-current, the resulting system of equation gives us the model of the membrane-voltage.
 
-\includegraphics[angle=-90,width=0.98\linewidth]{PA_and_ER_Models_statisticalMeasures}
+\\~\\
+
+As the model is linear, we can specify the dynamics of the membrane-voltage completely by the so called Green's function $G_{ij}(x, y, t)$ which specifies how the voltage at length $x$ of branch $i$ develops in time with regards to a delta spike at length $y$ of branch $j$ at start. Throughout my project I only focused on the Green's function on the twin-cell network.
+
+\begin{center}
+	\includegraphics[width=0.30\linewidth]{two_cells-eps-converted-to.pdf}
+	\captionof{figure}[centering]{Schema of twin-cell network}
+\end{center}
+
+To calculate the Green's function in the frequency domain we use the method of local point matching which depends on trips over the network from $x$ to $y$.
+
+\vspace{-0.2em}
+\begin{center}
+	\includegraphics[width=0.36\linewidth]{model-eps-converted-to.pdf}
+	\hspace{2em}
+	\includegraphics[width=0.55\linewidth]{sum_rules-eps-converted-to.pdf}
+\end{center}
+\vspace{-0.2em}
+
+The above figures show the type of nodes in the network and how the trips are modified by multiplication of constants depending on how they traverse the network going from $x$ to $y$.
+
 }
 
-\headerbox{Degree Distribution Radically Changes}
+\headerbox{Results}
 {name=degreeDistribution,span=2,column=1,below=density,above=bottom}{
 Degree distributions are exceptionally sensitive to the length of the aggregation window. \textbf{The same dynamic network may produce a normal, lognormal or even power law distribution for different aggregation lenghts.} The digree distribution of the snapshot and cumulative network is inherently different. The following surfaces show the CPA model until it approaches the complete network.
 \vspace{-0.2em}
