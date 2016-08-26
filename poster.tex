@@ -18,6 +18,10 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{amsmath}
+
+
+\renewcommand{\familydefault}{\sfdefault}
 
 %%% Global Settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -108,41 +112,30 @@
 	}
 }
 
-\headerbox{Background}{name=problem, column=0,row=0}{
+%problem
+\headerbox{Background}{name=background, column=0,row=0}{
 Neurons are specialised cells which form the fundamental computing unit of the brain and the central nervous system. Each neuron consist of a cell body, dendrites and an axon, where the dendrites receive pulses of voltage from other neurons axons, which act like an output.
 
 \begin{center}
 	\includegraphics[width=0.49\linewidth]{neuron.png}
-	\captionof{figure}[centering]{A neuron with an action potential going down the axon}
+	\captionof{figure}[centering]{A neuron with an action potential going down the axon \cite{NeuronPic}}
 \end{center}
 
 Through voltage, the neurons may communicate to each other and this is what gives rise to the cognitive processes in any animal. When enough voltage enter a neuron, it spikes and send signals at a constant rate to all neurons connected to it, a so called action potential.
 
 \begin{center}
 	\includegraphics[width=0.49\linewidth]{neural_spike.jpeg}
-	\captionof{figure}[centering]{Recording of membrane potential of a neuron}
+	\captionof{figure}[centering]{Recording of membrane potential of a neuron \cite{spikes}}
 \end{center}
 
-On the level of a small scale network, or a single neuron, knowing the input/output relation when the cell membrane is subjected to an electrical current or spike lets us know a lot about the dynamics. The research of this poster investigates this question. 
+On the level of a small scale network, or a single neuron, knowing the input/output relation when the cell membrane is subjected to an electrical current or spike lets us know a lot about the dynamics.
+
+\\~\\
+
+By finding a map between something easily measured, like voltage, and the strength and distance of a gap junction, it would be possible for experimentalists to recover the parameters of the gap junction, something that is hard to do directly. It is this question that I have considered in my research project.
 }
 
-\headerbox{Basic Concepts}{name=definitions,column=0,below=problem}{
-In our work the dynamic network is a series of graphs, that is, $DN = G_t(V_t,E_t)$, where $E_t \subseteq V_t \times V_t$ ($\forall t \geq 0$). The initial network, $G_0$, is considered as a parameter of the process. The \textbf{node set fixed} and we worked with an about \textbf{constant number of edges}. We assume that the evolution of the network can be described as the result of an edge creation and an edge deletion process. We define $G_t$ as the \textbf{snapshot network} and 
-	{\smaller
-	$$G_T = ( \bigcup^{T}_{t=0}V_t, \bigcup^{T}_{t=0}E_t) ~ \textnormal{for} ~ T \geq 0.$$
-	}
-as the \textbf{cumulative network}.
-}
-
-\headerbox{Models}{name=models,column=0,below=definitions}{
-\textbf{ER1} $G_0$ is a random graph. Add each non-existing edge with $p_A$, delete each existing edge with $p_D$ probability. \\
-\textbf{ER2} $G_0$ is a random graph. Add $k_A$ uniformly selected random new edges and delete $k_D$ existing edges. \\
-\textbf{ER3} $G_0$ is a random graph. Rewire $k_{RW}$ edges. \\
-\textbf{SPA} (\emph{Snapshot preferential}) $G_0$ is a scale free network. Add $k_A$ edges from a random node with preferential attachment based on the snapshot network. Delete $k_D$ existing edges. \\
-\textbf{CPA} (\emph{Cumulative preferential}) $G_0$ is a scale free network. Add $k_A$ edges from a random node with preferential attachment based on the cumulative network. Delete $k_D$ existing edges.
-}
-
-\headerbox{References}{name=references,column=0,below=models}{
+\headerbox{References}{name=references,column=0,below=background}{
 \smaller													% Make the whole text smaller
 \vspace{-0.4em} 										% Save some space at the beginning
 \bibliographystyle{plain}							% Use plain style
@@ -150,20 +143,26 @@ as the \textbf{cumulative network}.
 \begin{thebibliography}{1}							% Simple bibliography with widest label of 1
 \itemsep=-0.01em										% Save space between the separation
 \setlength{\baselineskip}{0.4em}					% Save space with longer lines
-\bibitem{prevWork1} Laszlo Gulyas, Richard Legendi: \emph{Effects of Sample Duration on Network Statistics in Elementary Models of Dynamic Networks}, International Conference on Computational Science, Singapore (2011) 
-\bibitem{prevWork2} Laszlo Gulyas, Susan Khor, Richard Legendi and George Kampis \emph{Cumulative Properties of Elementary Dynamic Networks}, The International Sunbelt Social Network Conference XXXI (2011)
-\bibitem{gulya-kampis1} Gulyas, Laszlo et al.: \emph{Betweenness Centrality Dynamics in Networks of Changing Density}. Presented at the 19th International Symposium on Mathematical Theory of Networks and Systems (MTNS 2010)
+\bibitem{NeuronPic}
+\bibitem{spikes}
+
 \end{thebibliography}
 }
 
-\headerbox{Acknowledgements}{name=acknowledgements,column=0,below=references, above=bottom}{
-\smaller						% Make the whole text smaller
-\vspace{-0.4em}			% Save some space at the beginning
-This research was partially supported by the Hungarian Government (KMOP-1.1.2-08/1-2008-0002 ) and the European Union's Seventh Framework Programme: DynaNets, FET-Open project no. FET-233847 (\url{http://www.dynanets.org}). The supports are gratefully acknowledged.
-} 
+\headerbox{Acknowledgement}
+{name=Acknowledgement,span=1,column=0,below=references,above=bottom}{
+I would like to thank the University of Warwick URSS for supporting me these weeks and my supervisor Yulia Timofeeva for guiding me and making this researh possible.
+
+\begin{center}
+	\includegraphics[width=\linewidth]{urss_full_logo.png}
+\end{center}
+
+}
+
 
 %\cite{} sites work
-\headerbox{Method}{name=density,span=2,column=1,row=0}{
+%density
+\headerbox{Method}{name=method,span=2,column=1,row=0}{
 
 We use a model based on the cable equation modelling the voltage dynamics on the cell membranes of neurons. As the model is linear, we can specify the dynamics of the membrane-voltage completely by the so called Green's function $G_{ij}(x, y, t)$ which specifies how the voltage at length $x$ of branch $i$ develops in time with regards to a delta spike at length $y$ of branch $j$ at start. Throughout my project I only focused on the Green's function on the twin-cell network.
 
@@ -187,17 +186,20 @@ The above figures show the type of nodes in the network and how the trips are mo
 }
 
 \headerbox{Results}
-{name=degreeDistribution,span=2,column=1,below=density,above=bottom}{
-I calculated the response function for cell 1 and 2 in the symmetrical twin-cell network, giving me the response function
-%\begin{equation*}
-
-%\end{equation*}
-input at the cell bodies and output at the cell body of cell 1 and different distances up until the gap junction for cell 2, the graphs show how the output (frequency domain) depends on distance and strength of gap junction.
+{name=Results,span=2,column=1,below=method}{
+I calculated the response function for cell 1 and 2 in the symmetrical twin-cell network, input at the cell bodies and output at the cell body of cell 1 and different distances up until the gap junction for cell 2, the graphs show how the output (frequency domain) depends on distance and strength of gap junction for a specific distance of input from cell body.
 
 \begin{center}
 	\includegraphics[width=\linewidth]{cell1_2.jpg}
 		\captionof{figure}[centering]{Graphs of cell 1 and cell 2, $L_{gj}$ is the distance and $g_{gj}$ the strength of the gap junction}
 \end{center}
+
+}
+
+\headerbox{Conclusions}
+{name=conclusions,span=2,column=1,below=Results,above=bottom}{
+
+
 
 }
 
